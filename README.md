@@ -1,1 +1,2 @@
-# GLCD12864B-V2.0-Driver
+# GLCD12864B-V2.0-Driver 
+With STM32 MCU
