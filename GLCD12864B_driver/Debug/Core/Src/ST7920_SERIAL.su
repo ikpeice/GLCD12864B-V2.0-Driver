@@ -1,0 +1,17 @@
+../Core/Src/ST7920_SERIAL.c:40:6:SendByteSPI	24	static
+../Core/Src/ST7920_SERIAL.c:61:6:ST7920_SendCmd	16	static
+../Core/Src/ST7920_SERIAL.c:75:6:ST7920_SendData	16	static
+../Core/Src/ST7920_SERIAL.c:87:6:ST7920_SendString	24	static
+../Core/Src/ST7920_SERIAL.c:120:6:ST7920_GraphicMode	16	static
+../Core/Src/ST7920_SERIAL.c:141:6:ST7920_DrawBitmap	24	static
+../Core/Src/ST7920_SERIAL.c:172:6:ST7920_Update	8	static
+../Core/Src/ST7920_SERIAL.c:179:6:ST7920_Clear	16	static
+../Core/Src/ST7920_SERIAL.c:212:6:ST7920_Init	8	static
+../Core/Src/ST7920_SERIAL.c:249:6:SetPixel	24	static
+../Core/Src/ST7920_SERIAL.c:273:6:DrawLine	48	static
+../Core/Src/ST7920_SERIAL.c:307:6:DrawRectangle	24	static
+../Core/Src/ST7920_SERIAL.c:341:6:DrawFilledRectangle	32	static
+../Core/Src/ST7920_SERIAL.c:376:6:DrawCircle	40	static
+../Core/Src/ST7920_SERIAL.c:415:6:DrawFilledCircle	40	static
+../Core/Src/ST7920_SERIAL.c:450:6:DrawTriangle	24	static
+../Core/Src/ST7920_SERIAL.c:461:6:DrawFilledTriangle	56	static
