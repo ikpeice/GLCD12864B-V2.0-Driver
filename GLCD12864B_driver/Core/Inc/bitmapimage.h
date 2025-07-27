@@ -27,7 +27,8 @@
 extern const uint8_t signal_bitmap[7][5];
 
 extern const uint8_t pointer_bitmap[1][7];
-extern const uint8_t miriair_bitmap[7][7];
+extern const uint8_t miriair_bitmap[7][5];
+extern const uint8_t battery_bitmap[5][2];
 // 
 // =================================================================
 // 

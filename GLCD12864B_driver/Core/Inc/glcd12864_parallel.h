@@ -41,7 +41,7 @@ void lcd_draw_topbar(void);
 void lcd_draw_H_line(uint8_t x, uint8_t y, uint8_t lenght);
 void lcd_draw_V_line(uint8_t x, uint8_t y, uint8_t lenght);
 void lcd_draw_signalStrenght(uint8_t value);
-
+void lcd_draw_battery(uint8_t x, uint8_t y, uint8_t value);
 
 //STRING FUNCTIONS
 int int2asc(long, int, char*, int);

@@ -118,7 +118,8 @@ int main(void)
 
 
   lcd_draw_topbar();
-  lcd_draw_signalStrenght(50);
+  lcd_update();
+  lcd_draw_battery(0,100,19);
   lcd_draw_H_line(8,0,128);
   lcd_draw_V_line(8,8,64);
 
@@ -135,6 +136,8 @@ int main(void)
 //	lcd_clear_buffer();
 //	lcd_puts(10, 5, "GLCD READY");
 //	lcd_update_();  // push framebuffer to LCD
+
+  uint8_t signal = 14;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -160,6 +163,9 @@ int main(void)
 //	  lcd_putstring_a(4, 0, "16x8px.", 1, 0);
 //
 //	  lcd_putstring_b(6, 0, "16x16px.", 1);
+	  lcd_draw_signalStrenght(signal);
+	  signal +=5;
+	  if(signal>=100)signal=14;
 	  HAL_Delay(100);
 	  HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_7);
     /* USER CODE END WHILE */

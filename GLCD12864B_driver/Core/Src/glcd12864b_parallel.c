@@ -464,6 +464,7 @@ void lcd_draw_pointer(uint8_t new_x, uint8_t new_y) {
 	static uint8_t prev_x = 9;
 	static uint8_t prev_y = 0;
 	static uint8_t prev_buff[1][7]={0};
+
 	if(new_x > 57)new_x = 57;
 	if(new_y > 15)new_y = 15;
 
@@ -491,17 +492,20 @@ void lcd_draw_pointer(uint8_t new_x, uint8_t new_y) {
 }
 
 void lcd_draw_topbar(void){
-
     for (uint8_t row = 0; row < 7; row++) {
-    	for(int col = 0; col < 7; col++){
-    		framebuffer[ row][col] = miriair_bitmap[row][col];
-    	}
-    }
+        for (uint8_t col = 0; col < 39; col++) {
+            uint8_t byte = col / 8;
+            uint8_t bit = 7 - (col % 8);
 
-    for (uint8_t row = 0; row < 7; row++) {
-    	for(int col = 0; col < 5; col++){
-    		framebuffer[ row][col+11] = signal_bitmap[row][col];
-    	}
+            // Read corresponding bit from miriair_bitmap
+            uint8_t src_byte = miriair_bitmap[row][byte];
+            uint8_t bit_val = (src_byte >> bit) & 0x01;
+
+            if (bit_val)
+                framebuffer[row][byte] |=  (1 << bit);
+            else
+                framebuffer[row][byte] &= ~(1 << bit);
+        }
     }
 }
 
@@ -524,25 +528,47 @@ void lcd_draw_V_line(uint8_t x, uint8_t y, uint8_t lenght){
 }
 
 void lcd_draw_signalStrenght(uint8_t value){
-	uint8_t prev_value = 1;
-	uint8_t page = 15, y = 121;
-	uint8_t num_bars = value/14;
 
-    for (uint8_t row = 6; row > 0; row--) {
-    	for(int col = y; col < y+7; col++){
+	uint8_t page = 15;
+	uint8_t y = 121;
+	uint8_t num_bars = 7- (value/14);
+
+    for(uint8_t row = 6; row >= 0; row--) {
+    	for(uint8_t col = y; col < 128; col++){
     		uint8_t bit = 7 - (col % 8);
     		if(bit < num_bars){
-    			framebuffer[ row][page] |= (0x01 << bit); // set the bit
-    		}
-    		else{
     			framebuffer[ row][page] &= ~(0x01 << bit); // clear the bit
     		}
+    		else{
 
+    			framebuffer[ row][page] |= (0x01 << bit); // set the bit
+    		}
+    		//lcd_update();
     	}
+    	if(row==0)break;
     	y++;
     }
+}
 
-    prev_value = value;
+void lcd_draw_battery(uint8_t x, uint8_t y, uint8_t value){
+
+    for (uint8_t row = x; row < 5; row++) {
+        for (uint8_t col = y; col < y+12; col++) {
+            uint8_t byte = col / 8;
+            uint8_t bit = 7 - (col % 8);
+
+            // Read corresponding bit from miriair_bitmap
+            uint8_t src_byte = battery_bitmap[row][byte];
+            uint8_t bit_val = (src_byte >> bit) & 0x01;
+
+            if (bit_val)
+                framebuffer[row][byte] |=  (1 << bit);
+            else
+                framebuffer[row][byte] &= ~(1 << bit);
+        }
+        lcd_update();
+    }
+
 }
 
 
